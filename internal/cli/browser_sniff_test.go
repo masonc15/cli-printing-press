@@ -258,13 +258,12 @@ func TestBrowserSniffCmdPreserveHostsWritesBaseURLOverrides(t *testing.T) {
 func TestPrintingPressSkillDocumentsPreserveHostsForComboHAR(t *testing.T) {
 	t.Parallel()
 
-	for _, path := range []string{
-		filepath.Join("..", "..", "skills", "printing-press", "SKILL.md"),
-		filepath.Join("..", "..", "skills", "printing-press", "references", "browser-sniff-capture.md"),
+	referenceData, err := os.ReadFile(filepath.Join("..", "..", "skills", "printing-press", "references", "browser-sniff-capture.md"))
+	require.NoError(t, err)
+	for _, text := range []string{
+		readPrintingPressSkillBundle(t),
+		string(referenceData),
 	} {
-		data, err := os.ReadFile(path)
-		require.NoError(t, err)
-		text := string(data)
 		assert.Contains(t, text, "source-priority.json")
 		assert.Contains(t, text, "two or more sources")
 		assert.Contains(t, text, "--preserve-hosts")
@@ -274,9 +273,7 @@ func TestPrintingPressSkillDocumentsPreserveHostsForComboHAR(t *testing.T) {
 func TestPrintingPressSkillDocumentsHARQualityGates(t *testing.T) {
 	t.Parallel()
 
-	skillData, err := os.ReadFile(filepath.Join("..", "..", "skills", "printing-press", "SKILL.md"))
-	require.NoError(t, err)
-	skillText := string(skillData)
+	skillText := readPrintingPressSkillBundle(t)
 	assert.Contains(t, skillText, `.log.entries | length > 0`)
 	assert.Contains(t, skillText, "Capture again (Recommended)")
 	assert.Contains(t, skillText, "Proceed with docs-only")

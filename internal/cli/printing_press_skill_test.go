@@ -11,10 +11,7 @@ import (
 func TestPrintingPressSkillSideEffectNarrativeGuidance(t *testing.T) {
 	t.Parallel()
 
-	data, err := os.ReadFile("../../skills/printing-press/SKILL.md")
-	require.NoError(t, err)
-
-	content := string(data)
+	content := readPrintingPressSkillBundle(t)
 	require.Contains(t, content, "Step 1 of `quickstart` should usually be verify-safe")
 	require.Contains(t, content, "Use `<cli> doctor --dry-run` as step 1")
 	require.Contains(t, content, "reports each as an `UNSUPPORTED` warning instead of executing it")
@@ -25,10 +22,7 @@ func TestPrintingPressSkillSideEffectNarrativeGuidance(t *testing.T) {
 func TestPrintingPressSkillMCPEnrichmentGate(t *testing.T) {
 	t.Parallel()
 
-	data, err := os.ReadFile("../../skills/printing-press/SKILL.md")
-	require.NoError(t, err)
-
-	content := string(data)
+	content := readPrintingPressSkillBundle(t)
 	require.Contains(t, content, "Mandatory >50 endpoint-tools confirmation")
 	require.Contains(t, content, "info: applied Cloudflare MCP pattern")
 	require.Contains(t, content, "does not require a blocking question")
@@ -46,10 +40,7 @@ func TestPrintingPressSkillMCPEnrichmentGate(t *testing.T) {
 func TestPrintingPressSkillTranscendenceCollectorSliceInit(t *testing.T) {
 	t.Parallel()
 
-	data, err := os.ReadFile("../../skills/printing-press/SKILL.md")
-	require.NoError(t, err)
-
-	content := string(data)
+	content := readPrintingPressSkillBundle(t)
 	require.Contains(t, content, "results := make([]yourRowType, 0, len(rawRows))")
 	require.Contains(t, content, "empty marshals")
 	require.NotContains(t, content, "var results []yourRowType")
@@ -65,10 +56,7 @@ func TestPrintingPressSkillTranscendenceCollectorSliceInit(t *testing.T) {
 func TestPrintingPressSkillEmptyResultOutputContract(t *testing.T) {
 	t.Parallel()
 
-	data, err := os.ReadFile("../../skills/printing-press/SKILL.md")
-	require.NoError(t, err)
-
-	content := string(data)
+	content := readPrintingPressSkillBundle(t)
 	require.Contains(t, content, "Empty results and output modes")
 	require.Contains(t, content, "wantsHumanTable(cmd.OutOrStdout(), flags)")
 	require.Contains(t, content, "printJSONFiltered(cmd.OutOrStdout(), rows, flags)")
@@ -91,10 +79,7 @@ func TestPrintingPressSkillEmptyResultOutputContract(t *testing.T) {
 func TestPrintingPressSkillSQLiteNovelCommandsGuardMissingMirror(t *testing.T) {
 	t.Parallel()
 
-	data, err := os.ReadFile("../../skills/printing-press/SKILL.md")
-	require.NoError(t, err)
-
-	content := string(data)
+	content := readPrintingPressSkillBundle(t)
 	require.Contains(t, content, "For SQLite-backed novel commands only")
 	require.Contains(t, content, "live execution without `--dry-run`, before the user has run `sync`")
 	require.Contains(t, content, "os.Stat(dbPath); os.IsNotExist(statErr)")
@@ -112,10 +97,7 @@ func TestPrintingPressSkillSQLiteNovelCommandsGuardMissingMirror(t *testing.T) {
 func TestPrintingPressSkillReachabilityGateAllowsLANOnlyCarveout(t *testing.T) {
 	t.Parallel()
 
-	data, err := os.ReadFile("../../skills/printing-press/SKILL.md")
-	require.NoError(t, err)
-
-	content := string(data)
+	content := readPrintingPressSkillBundle(t)
 	require.Contains(t, content, "Exception for LAN-only / mDNS-discovered APIs")
 	require.Contains(t, content, "http://localhost:<port>")
 	require.Contains(t, content, "http://127.0.0.1:<port>")
@@ -130,7 +112,7 @@ func TestPrintingPressSkillReachabilityGateAllowsLANOnlyCarveout(t *testing.T) {
 func TestPrintingPressSkillRebuildsStaleRepoLocalBinary(t *testing.T) {
 	t.Parallel()
 
-	data, err := os.ReadFile("../../skills/printing-press/SKILL.md")
+	data, err := os.ReadFile("../../skills/printing-press/scripts/preflight.sh")
 	require.NoError(t, err)
 	setupChecks, err := os.ReadFile("../../skills/printing-press/references/setup-checks.md")
 	require.NoError(t, err)

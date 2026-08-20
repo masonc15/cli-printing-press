@@ -97,6 +97,14 @@ func TestInternalSkillMinimumBinaryVersionsTrackMajor(t *testing.T) {
 			data, err := os.ReadFile(path)
 			require.NoError(t, err)
 			content := string(data)
+			// printing-press keeps its setup contract in scripts/preflight.sh
+			// since the progressive-disclosure split; the duplicated version
+			// comment lives there.
+			if strings.Contains(path, "skills/printing-press/SKILL.md") {
+				contract, err := os.ReadFile("../../skills/printing-press/scripts/preflight.sh")
+				require.NoError(t, err)
+				content += "\n" + string(contract)
+			}
 
 			frontmatter := frontmatterRe.FindStringSubmatch(content)
 			require.Len(t, frontmatter, 2, "skill must declare min-binary-version frontmatter")
