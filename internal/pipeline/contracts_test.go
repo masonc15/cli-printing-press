@@ -1409,16 +1409,25 @@ func readContractFile(t *testing.T, path string) string {
 	var content strings.Builder
 	content.Write(data)
 
-	// printing-press-retro is a thin router plus per-phase files; contract
-	// text may live in either, so read them as one bundle.
-	if filepath.ToSlash(path) == "../../skills/printing-press-retro/SKILL.md" {
-		phasePaths, err := filepath.Glob(filepath.Join(filepath.Dir(path), "phases", "*.md"))
+	// Some skills are a thin router plus per-phase/reference/script files;
+	// contract text may live in any of them, so read them as one bundle.
+	// printing-press-retro splits into phases/; printing-press splits into
+	// references/ plus the setup contract in scripts/preflight.sh.
+	var bundleGlobs []string
+	switch filepath.ToSlash(path) {
+	case "../../skills/printing-press-retro/SKILL.md":
+		bundleGlobs = []string{filepath.Join("phases", "*.md")}
+	case "../../skills/printing-press/SKILL.md":
+		bundleGlobs = []string{filepath.Join("references", "*.md"), filepath.Join("scripts", "*.sh")}
+	}
+	for _, glob := range bundleGlobs {
+		extraPaths, err := filepath.Glob(filepath.Join(filepath.Dir(path), glob))
 		require.NoError(t, err)
-		for _, phasePath := range phasePaths {
-			phaseData, err := os.ReadFile(phasePath)
+		for _, extraPath := range extraPaths {
+			extraData, err := os.ReadFile(extraPath)
 			require.NoError(t, err)
 			content.WriteByte('\n')
-			content.Write(phaseData)
+			content.Write(extraData)
 		}
 	}
 	return content.String()
