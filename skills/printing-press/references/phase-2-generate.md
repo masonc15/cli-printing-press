@@ -603,7 +603,7 @@ surface only with deliberate per-command `cmd.Annotations["mcp:hidden"] =
 For OpenAPI input specs, declare these fields under `x-mcp:` at the document
 root (OpenAPI 3.0 `x-*` vendor extensions). The shape is identical to the
 internal-YAML `mcp:` block above — same field names, just nested under a
-vendor-extension key. See [`docs/SPEC-EXTENSIONS.md`](../../docs/SPEC-EXTENSIONS.md) for the canonical
+vendor-extension key. See [`docs/SPEC-EXTENSIONS.md`](https://github.com/masonc15/cli-printing-press/blob/main/docs/SPEC-EXTENSIONS.md) for the canonical
 schema and `info`-level placement option.
 
 **Smaller-surface variants:**
@@ -708,11 +708,11 @@ extension on the editable overlay or derived spec artifact before the final
 `generate` invocation, the same carry-over convention Pre-Generation
 Category Enrichment uses. The shape is identical to the internal-YAML
 `learn:` block, nested under the vendor-extension key; see
-[`docs/SPEC-EXTENSIONS.md`](../../docs/SPEC-EXTENSIONS.md).
+[`docs/SPEC-EXTENSIONS.md`](https://github.com/masonc15/cli-printing-press/blob/main/docs/SPEC-EXTENSIONS.md).
 
 For field-by-field sourcing guidance, a worked example, the local validation
 workflow, and common pitfalls, see
-[`docs/SPEC-LEARN-AUTHORING.md`](../../docs/SPEC-LEARN-AUTHORING.md); point
+[`docs/SPEC-LEARN-AUTHORING.md`](https://github.com/masonc15/cli-printing-press/blob/main/docs/SPEC-LEARN-AUTHORING.md); point
 there instead of restating it in run artifacts.
 
 ### Lock and Generate

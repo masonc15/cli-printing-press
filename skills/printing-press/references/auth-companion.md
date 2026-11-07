@@ -190,13 +190,13 @@ not great for daily-driver CLIs.
 - [`references/browser-sniff-capture.md`](browser-sniff-capture.md) — where
   `login_url`, `login_complete_selector`, and `jwt_carrier_cookie` are
   discovered during Phase 1.7 traffic capture.
-- [`cmd/press-auth/`](../../../cmd/press-auth/) — the binary's source.
-- [`internal/pressauth/`](../../../internal/pressauth/) — the supporting
+- [`cmd/press-auth/`](https://github.com/masonc15/cli-printing-press/tree/main/cmd/press-auth) — the binary's source.
+- [`internal/pressauth/`](https://github.com/masonc15/cli-printing-press/tree/main/internal/pressauth) — the supporting
   package (state file, keychain, chromedp launcher, JWT decode, refresh).
-- [`internal/generator/templates/auth_browser.go.tmpl`](../../../internal/generator/templates/auth_browser.go.tmpl) —
+- [`internal/generator/templates/auth_browser.go.tmpl`](https://github.com/masonc15/cli-printing-press/blob/main/internal/generator/templates/auth_browser.go.tmpl) —
   the template that integrates press-auth into generated CLIs.
-- [`docs/solutions/logic-errors/auth-login-chrome-broken-2026-05.md`](../../../docs/solutions/logic-errors/auth-login-chrome-broken-2026-05.md) —
+- [`docs/solutions/logic-errors/auth-login-chrome-broken-2026-05.md`](https://github.com/masonc15/cli-printing-press/blob/main/docs/solutions/logic-errors/auth-login-chrome-broken-2026-05.md) —
   bug history: the original failure, the root cause, the press-auth fix.
-- [`docs/SPEC-EXTENSIONS.md`](../../../docs/SPEC-EXTENSIONS.md) — canonical
+- [`docs/SPEC-EXTENSIONS.md`](https://github.com/masonc15/cli-printing-press/blob/main/docs/SPEC-EXTENSIONS.md) — canonical
   reference for the spec keys (`login_url`, `login_complete_selector`,
   `jwt_carrier_cookie`, and the OpenAPI `x-auth-companion` form).
